@@ -24,27 +24,35 @@ public class Window extends JFrame implements WindowListener {
 		this.setSize(win);
 		this.setResizable(true);
 		this.setPreferredSize(win);
+		this.setLocationRelativeTo(null);
 		this.addWindowListener(this);
 		
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		
 		Background back = new Background("tinspire.PNG", width, height);
-		
+		c.gridheight = 1;
+		c.gridwidth = 1;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.weightx = 1;
 		c.weighty = 1;
-		Store store = new Store();
-		JPanel pane = new JPanel();
-		pane.setForeground(Color.magenta);
-		c.fill = GridBagConstraints.VERTICAL;
-		back.add(pane, c);
-
 		c.fill = GridBagConstraints.BOTH;
+	
+		Store store = new Store();
+		
+		CocharoPane pane = new CocharoPane(game);
+		
+		back.add(pane, c);
 		this.add(back, c);
-		c.weightx = .25;
+		
+		c.weightx = .5;
 		c.gridx = 1;
+		
+		back.add(game, c);
+		
+		c.weightx = .25;
+		c.gridx = 2;
 		
 		this.add(store, c);
 		this.setVisible(true);
