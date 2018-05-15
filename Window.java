@@ -31,8 +31,8 @@ public class Window extends JFrame implements WindowListener {
 		GridBagConstraints c = new GridBagConstraints();
 		
 		Background back = new Background("tinspire.PNG", width, height);
-		c.gridheight = 1;
-		c.gridwidth = 1;
+		c.gridheight = 2;
+		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = 0;
 		c.weightx = 1;
@@ -42,17 +42,20 @@ public class Window extends JFrame implements WindowListener {
 		Store store = new Store();
 		
 		CocharoPane pane = new CocharoPane(game);
-		
+		c.anchor = GridBagConstraints.WEST;
 		back.add(pane, c);
-		this.add(back, c);
 		
-		c.weightx = .5;
 		c.gridx = 1;
-		
 		back.add(game, c);
 		
+		c.gridx = 0;
+		c.anchor = GridBagConstraints.CENTER;
+		this.add(back, c);
+		
+		
+		
 		c.weightx = .25;
-		c.gridx = 2;
+		c.gridx = 1;
 		
 		this.add(store, c);
 		this.setVisible(true);
