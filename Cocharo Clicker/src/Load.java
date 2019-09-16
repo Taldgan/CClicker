@@ -2,9 +2,12 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Load {
-	public double lClicks;
+	public ArrayList<Double> data = new ArrayList<Double>();
+	
+	private double obj;
 	
 	
 	public Load(String path, String name) {
@@ -30,18 +33,22 @@ public class Load {
 			}
 			BufferedReader br = new BufferedReader(new FileReader(file));
 			String num = br.readLine();
-			if(num == null) {
-				num = "" + 0;
-			}
-			
-				try {
-//					System.out.println(num + "fefe");
-					lClicks = Double.parseDouble(num);
+			do {
+				if(num == null) {
+					System.out.println("nulllll");
+					num = "" + 0;
 				}
-				catch(NumberFormatException e) {
-					lClicks = 0;
-					e.printStackTrace();
-				}
+				
+					try {
+						System.out.println("Loading " + obj);
+						obj = Double.parseDouble(num);
+						data.add(obj);
+					}
+					catch(NumberFormatException e) {
+						obj = 0;
+						e.printStackTrace();
+					}	
+			} while((num = br.readLine()) != null);
 				
 			br.close();
 		}
@@ -50,8 +57,9 @@ public class Load {
 		}
 		
 	}
-	public double getClicks() {
-		return lClicks;
+	public ArrayList<Double> getData() {
+		System.out.println(data.toString());
+		return data;
 	}
 	
 }

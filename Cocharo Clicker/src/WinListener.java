@@ -26,7 +26,7 @@ public class WinListener implements WindowListener {
 	
 	public void windowClosing(WindowEvent e) {
 		JFrame end = new JFrame();
-		Point middle = new Point(1160, 740);
+		Point middle = new Point((1920/2)-400, (1080/2)-200);
 		end.setLocation(middle);
 		end.setSize(800, 400);
 		end.add(kk);

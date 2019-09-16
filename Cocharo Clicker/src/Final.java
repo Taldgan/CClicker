@@ -12,28 +12,25 @@ public class Final extends JPanel
 	private Font font;
 //	private JPanel space;
 	private boolean clicked;
+	private MouseManager mm;
 	
 	public Final() {
 		clicked = false; 
 		this.setSize(800, 400);	
 		font = new Font("Comic Sans", Font.BOLD, 100);
-		yes = new InteractiveComponent("YES  ", font, 50, 100, 250, 150, "");
-		no = new InteractiveComponent("NO", font , 470, 100, 250, 150, "");
-		addMouseListener(yes);
-		addMouseListener(no);	
+		yes = new InteractiveComponent("YES  ", font, 50, 100, 250, 150, "", 0, 0, 0, null);
+		no = new InteractiveComponent("NO", font , 470, 100, 250, 150, "", 0, 0, 0, null);
+		mm = new MouseManager();
+		addMouseListener(mm); addMouseMotionListener(mm);
 	}
 	
 	public boolean save() {
 		return clicked;
 	}
 	
-	public void update(){
-		if(yes.isClicked()) {
-			clicked = true;
-		}
-		if(no.isClicked()) {
-			System.exit(0);
-		}
+	public void update() {
+		if (mm.isMouseDown() && InputUtil.isClickedi(mm.getMouseX(), mm.getMouseY(), yes.getX(), yes.getY(), yes.getW(), yes.getH(), true)) clicked = true;
+		if (mm.isMouseDown() && InputUtil.isClickedi(mm.getMouseX(), mm.getMouseY(), no.getX(), no.getY(), no.getW(), no.getH(), true)) System.exit(0);
 	}
 	
 	public void paintComponent(Graphics g) {
